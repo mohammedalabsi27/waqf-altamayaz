@@ -9,25 +9,29 @@ class RoadmapItemSeeder extends Seeder
 {
     public function run(): void
     {
-        // ⚠️ الموقع الأصلي ما كان فيه محتوى فعلي لهذا القسم (كان شبه فارغ).
-        // هذي بيانات مبدئية (Placeholder) لازم تُستبدل ببيانات حقيقية من الوقف.
+        // خارطة سير وقف التميز الأسري خلال السنوات الخمس (المحتوى الرسمي)
         $items = [
-            ['year_label' => 'السنة الأولى', 'title' => 'التأسيس وبناء الفريق'],
-            ['year_label' => 'السنة الثانية', 'title' => 'إطلاق البرامج الأساسية'],
-            ['year_label' => 'السنة الثالثة', 'title' => 'التوسع وزيادة الشراكات'],
-            ['year_label' => 'السنة الرابعة', 'title' => 'تعزيز الأثر المجتمعي'],
-            ['year_label' => 'السنة الخامسة', 'title' => 'الاستدامة والتقييم الشامل'],
+            ['icon' => 'fa-solid fa-calendar-days',     'title' => 'الخطة الاستراتيجية', 'description' => '5 سنوات'],
+            ['icon' => 'fa-solid fa-building',          'title' => 'البنية التحتية',     'description' => 'تجهيز المقر والكوادر والهوية'],
+            ['icon' => 'fa-solid fa-people-group',      'title' => 'الحوكمة الإدارية',   'description' => 'البناء الإداري والمالي والقانوني'],
+            ['icon' => 'fa-solid fa-people-roof',       'title' => 'البرامج الأسرية',    'description' => 'لجميع فئات الأسرة والمجتمع'],
+            ['icon' => 'fa-solid fa-lightbulb',         'title' => 'ابتكار المنتجات',    'description' => 'تصميم محتوى أسري متخصص'],
+            ['icon' => 'fa-solid fa-laptop-code',       'title' => 'البرامج التقنية',    'description' => 'برمجة المواقع والمنصات الأسرية'],
+            ['icon' => 'fa-solid fa-chart-line',        'title' => 'النمو والتميز',      'description' => 'الوصول للامتياز التجاري'],
         ];
 
+        // حذف البيانات المبدئية القديمة ثم إدخال المحتوى الصحيح
+        RoadmapItem::query()->delete();
+
         foreach ($items as $index => $item) {
-            RoadmapItem::updateOrCreate(
-                ['year_label' => $item['year_label']],
-                [
-                    'title' => $item['title'],
-                    'order' => $index + 1,
-                    'is_active' => true,
-                ]
-            );
+            RoadmapItem::create([
+                'icon' => $item['icon'],
+                'title' => $item['title'],
+                'description' => $item['description'],
+                'year_label' => null,
+                'order' => $index + 1,
+                'is_active' => true,
+            ]);
         }
     }
 }

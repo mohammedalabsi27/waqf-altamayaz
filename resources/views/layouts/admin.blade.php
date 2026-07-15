@@ -52,6 +52,8 @@
                         ['route' => 'admin.impact-items.index', 'icon' => 'fa-chart-line', 'label' => 'الأثر المتوقع', 'match' => 'admin.impact-items.*'],
                         ['route' => 'admin.training-bag-categories.index', 'icon' => 'fa-layer-group', 'label' => 'تصنيفات الحقائب', 'match' => 'admin.training-bag-categories.*'],
                         ['route' => 'admin.training-bags.index', 'icon' => 'fa-briefcase', 'label' => 'الحقائب التدريبية', 'match' => 'admin.training-bags.*'],
+                        ['route' => 'admin.bank-accounts.index', 'icon' => 'fa-building-columns', 'label' => 'الحسابات البنكية', 'match' => 'admin.bank-accounts.*'],
+                        ['route' => 'admin.donations.index', 'icon' => 'fa-hand-holding-heart', 'label' => 'التبرعات', 'match' => 'admin.donations.*'],
                         ['route' => 'admin.contact-messages.index', 'icon' => 'fa-envelope', 'label' => 'رسائل التواصل', 'match' => 'admin.contact-messages.*'],
                         ['route' => 'admin.settings.edit', 'icon' => 'fa-gear', 'label' => 'إعدادات الموقع', 'match' => 'admin.settings.*'],
                     ];

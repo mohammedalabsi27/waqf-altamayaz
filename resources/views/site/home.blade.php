@@ -258,22 +258,46 @@
             <h2 class="text-3xl md:text-4xl font-extrabold mt-2">خارطة سير الوقف خلال السنوات الخمس</h2>
         </div>
 
-        <div class="grid md:grid-cols-5 gap-6">
-            @foreach($roadmapItems as $item)
-                <div class="relative group" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                    <div class="glass rounded-2xl p-6 h-full hover:bg-white/15 transition-all duration-300 group-hover:-translate-y-2">
-                        <span class="w-11 h-11 flex items-center justify-center rounded-xl bg-accent text-primary-dark font-extrabold text-lg mb-4 shadow-accent-glow">{{ $loop->iteration }}</span>
-                        <h4 class="font-bold text-secondary text-sm mb-2">{{ $item->year_label }}</h4>
-                        <p class="font-semibold leading-6 text-white/90">{{ $item->title }}</p>
-                        @if($item->description)
-                            <p class="text-white/60 text-xs leading-6 mt-2">{{ $item->description }}</p>
-                        @endif
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+
+            {{-- صورة الكعبة --}}
+            <div class="lg:col-span-4 relative" data-aos="fade-left">
+                <div class="relative rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] group">
+                    <img src="{{ asset('images/kaba.jpg') }}" alt="الكعبة المشرفة"
+                         class="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-darker/80 via-transparent to-transparent"></div>
+                    {{-- إطار داخلي --}}
+                    <div class="absolute inset-3 rounded-2xl border border-white/25 pointer-events-none"></div>
+                    <div class="absolute bottom-6 inset-x-6 text-center">
+                        <span class="block h-1 w-12 bg-accent rounded-full mx-auto mb-3"></span>
+                        <p class="font-extrabold text-lg text-white leading-8">وقفٌ يمتد أثره بإذن الله</p>
                     </div>
-                    @if(!$loop->last)
-                        <div class="hidden md:block absolute top-9 -start-3 w-6 h-0.5 bg-white/20"></div>
-                    @endif
                 </div>
-            @endforeach
+                {{-- زخارف --}}
+                <div class="absolute -top-5 -start-5 w-24 h-24 border-2 border-accent/40 rounded-3xl -z-10"></div>
+                <div class="absolute -bottom-6 -end-6 w-32 h-32 bg-secondary/15 rounded-full blur-2xl"></div>
+            </div>
+
+            {{-- بطاقات المراحل --}}
+            <div class="lg:col-span-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                @foreach($roadmapItems as $item)
+                    <div class="group {{ $loop->last && $loop->count % 3 === 1 ? 'xl:col-start-2' : '' }}"
+                         data-aos="fade-up" data-aos-delay="{{ $loop->index * 70 }}">
+                        <div class="glass rounded-2xl p-5 h-full text-center hover:bg-white/15 transition-all duration-300 group-hover:-translate-y-2">
+                            <span class="mx-auto w-14 h-14 flex items-center justify-center rounded-2xl bg-accent text-primary-dark text-2xl mb-4 shadow-accent-glow group-hover:scale-110 transition-transform duration-300">
+                                <i class="{{ $item->icon ?: 'fa-solid fa-flag' }}"></i>
+                            </span>
+                            @if($item->year_label)
+                                <h4 class="font-bold text-secondary text-xs mb-1">{{ $item->year_label }}</h4>
+                            @endif
+                            <p class="font-extrabold leading-6 text-white">{{ $item->title }}</p>
+                            @if($item->description)
+                                <p class="text-white/60 text-xs leading-6 mt-2">{{ $item->description }}</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>

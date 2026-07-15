@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class RoadmapItem extends Model
+class BankAccount extends Model
 {
     protected $fillable = [
-        'year_label',
-        'icon',
-        'title',
-        'description',
+        'bank_name',
+        'account_name',
+        'account_number',
+        'iban',
+        'logo',
         'order',
         'is_active',
     ];
@@ -18,6 +20,11 @@ class RoadmapItem extends Model
     protected $casts = [
         'is_active' => 'boolean',
     ];
+
+    public function donations(): HasMany
+    {
+        return $this->hasMany(Donation::class);
+    }
 
     public function scopeActive($query)
     {

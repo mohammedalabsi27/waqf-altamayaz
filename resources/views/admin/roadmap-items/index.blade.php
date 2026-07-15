@@ -14,8 +14,9 @@
         <thead class="bg-gray-50 text-gray-500 font-semibold">
             <tr>
                 <th class="px-6 py-4">الترتيب</th>
-                <th class="px-6 py-4">السنة/المرحلة</th>
+                <th class="px-6 py-4">الأيقونة</th>
                 <th class="px-6 py-4">العنوان</th>
+                <th class="px-6 py-4">التفاصيل</th>
                 <th class="px-6 py-4">الحالة</th>
                 <th class="px-6 py-4">إجراءات</th>
             </tr>
@@ -24,8 +25,13 @@
             @forelse($items as $item)
                 <tr>
                     <td class="px-6 py-4 text-gray-500">{{ $item->order }}</td>
-                    <td class="px-6 py-4 font-semibold text-secondary">{{ $item->year_label }}</td>
-                    <td class="px-6 py-4">{{ $item->title }}</td>
+                    <td class="px-6 py-4">
+                        <span class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-primary/10 text-primary text-lg">
+                            <i class="{{ $item->icon ?: 'fa-solid fa-flag' }}"></i>
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 font-semibold">{{ $item->title }}</td>
+                    <td class="px-6 py-4 text-gray-500">{{ $item->description }}</td>
                     <td class="px-6 py-4">
                         @if($item->is_active)
                             <span class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">مفعّل</span>
@@ -44,7 +50,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5" class="px-6 py-10 text-center text-gray-400">لا توجد بيانات بعد</td></tr>
+                <tr><td colspan="6" class="px-6 py-10 text-center text-gray-400">لا توجد بيانات بعد</td></tr>
             @endforelse
         </tbody>
     </table>

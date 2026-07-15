@@ -69,10 +69,11 @@
                 <li><a href="{{ route('programs.index') }}" class="nav-link {{ request()->routeIs('programs.*') ? 'is-active' : '' }}">البرامج</a></li>
                 <li><a href="{{ route('home') }}#map" class="nav-link">خارطة السير</a></li>
                 <li><a href="{{ route('training-bags.index') }}" class="nav-link {{ request()->routeIs('training-bags.*') ? 'is-active' : '' }}">الحقائب التدريبية</a></li>
+                <li><a href="{{ route('contact.index') }}" class="nav-link {{ request()->routeIs('contact.*') ? 'is-active' : '' }}">تواصل معنا</a></li>
             </ul>
 
-            <a href="{{ route('contact.index') }}" class="hidden lg:inline-flex btn-primary btn-md">
-                <i class="fa-solid fa-paper-plane"></i> تواصل معنا
+            <a href="{{ route('donate.index') }}" class="hidden lg:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-2.5 rounded-xl shadow-accent-glow hover:-translate-y-0.5 transition-all">
+                <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
             </a>
 
             {{-- زر قائمة الجوال --}}
@@ -95,6 +96,9 @@
         <a href="{{ route('programs.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">البرامج</a>
         <a href="{{ route('home') }}#map" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">خارطة السير</a>
         <a href="{{ route('training-bags.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">الحقائب التدريبية</a>
-        <a href="{{ route('contact.index') }}" class="block btn-primary btn-md w-full mt-2">تواصل معنا</a>
+        <a href="{{ route('contact.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">تواصل معنا</a>
+        <a href="{{ route('donate.index') }}" class="flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-3 rounded-xl w-full mt-2 transition">
+            <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
+        </a>
     </div>
 </header>

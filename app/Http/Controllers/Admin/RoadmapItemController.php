@@ -50,7 +50,8 @@ class RoadmapItemController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
-            'year_label' => ['required', 'string', 'max:255'],
+            'year_label' => ['nullable', 'string', 'max:255'],
+            'icon' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'order' => ['nullable', 'integer'],
