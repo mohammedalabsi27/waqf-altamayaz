@@ -8,6 +8,7 @@
     'badge' => 'نسعد بتواصلكم',
     'title' => 'تواصل معنا',
     'breadcrumb' => ['تواصل معنا' => null],
+    'image' => 'images/headers/contact.jpg',
 ])
 
 <section class="py-20">

@@ -8,6 +8,7 @@
     'badge' => $bag->category->name,
     'title' => $bag->title,
     'breadcrumb' => ['الحقائب التدريبية' => route('training-bags.index'), $bag->title => null],
+    'image' => 'images/headers/training-bags.jpg',
 ])
 
 <section class="py-20">

@@ -8,6 +8,7 @@
     'badge' => 'مكتبة المعرفة',
     'title' => 'الحقائب التدريبية',
     'breadcrumb' => ['الحقائب التدريبية' => null],
+    'image' => 'images/headers/training-bags.jpg',
 ])
 
 <section class="py-16">

@@ -7,6 +7,7 @@
 @include('site.partials.page-header', [
     'title' => $program->title,
     'breadcrumb' => ['البرامج' => route('programs.index'), $program->title => null],
+    'image' => 'images/headers/programs.jpg',
 ])
 
 <section class="py-20">

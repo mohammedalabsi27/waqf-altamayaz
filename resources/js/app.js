@@ -15,9 +15,9 @@ Alpine.start();
    AOS — حركات عند التمرير
    ============================================================ */
 AOS.init({
-    duration: 800,
+    duration: 500,
     once: true,
-    offset: 90,
+    offset: 20,
     easing: 'ease-out-cubic',
 });
 

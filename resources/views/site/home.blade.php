@@ -175,7 +175,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             @foreach($values as $value)
                 <div class="card card-hover p-6 text-center group"
-                     data-aos="fade-up" data-aos-delay="{{ $loop->index * 70 }}">
+                     data-aos="fade-up" data-aos-delay="{{ $loop->index * 40 }}">
                     <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 text-primary grid place-items-center text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         <i class="{{ $value->icon ?? 'fa-solid fa-star' }}"></i>
                     </div>
@@ -282,7 +282,7 @@
             <div class="lg:col-span-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
                 @foreach($roadmapItems as $item)
                     <div class="group {{ $loop->last && $loop->count % 3 === 1 ? 'xl:col-start-2' : '' }}"
-                         data-aos="fade-up" data-aos-delay="{{ $loop->index * 70 }}">
+                         data-aos="fade-up" data-aos-delay="{{ $loop->index * 40 }}">
                         <div class="glass rounded-2xl p-5 h-full text-center hover:bg-white/15 transition-all duration-300 group-hover:-translate-y-2">
                             <span class="mx-auto w-14 h-14 flex items-center justify-center rounded-2xl bg-accent text-primary-dark text-2xl mb-4 shadow-accent-glow group-hover:scale-110 transition-transform duration-300">
                                 <i class="{{ $item->icon ?: 'fa-solid fa-flag' }}"></i>
@@ -386,7 +386,7 @@
             @foreach($trainingCategories as $category)
                 <a href="{{ route('training-bags.index', ['category' => $category->slug]) }}"
                    class="text-center card card-hover p-6 group"
-                   data-aos="fade-up" data-aos-delay="{{ $loop->index * 70 }}">
+                   data-aos="fade-up" data-aos-delay="{{ $loop->index * 40 }}">
                     <span class="block text-3xl font-extrabold text-secondary counter" data-target="{{ $category->bags_count }}">0</span>
                     <span class="text-gray-600 font-semibold group-hover:text-primary transition">{{ $category->name }}</span>
                 </a>

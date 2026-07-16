@@ -8,6 +8,7 @@
     'badge' => 'برامجنا',
     'title' => 'البرامج ومشاريع الوقف',
     'breadcrumb' => ['البرامج' => null],
+    'image' => 'images/headers/programs.jpg',
 ])
 
 <section class="py-20">
