@@ -38,6 +38,16 @@
                 <dd class="font-bold text-gray-800">{{ $donation->bankAccount?->bank_name ?? '—' }}</dd>
             </div>
             <div>
+                <dt class="text-gray-400 font-semibold mb-1">المشروع الوقفي</dt>
+                <dd class="font-bold text-gray-800">
+                    @if($donation->project)
+                        <a href="{{ route('admin.donation-projects.edit', $donation->project) }}" class="text-secondary hover:text-primary transition">{{ $donation->project->name }}</a>
+                    @else
+                        تبرع عام
+                    @endif
+                </dd>
+            </div>
+            <div>
                 <dt class="text-gray-400 font-semibold mb-1">مرجع التحويل</dt>
                 <dd class="font-bold text-gray-800" dir="ltr">{{ $donation->transfer_reference ?: '—' }}</dd>
             </div>

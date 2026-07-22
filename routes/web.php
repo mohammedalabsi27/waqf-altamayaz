@@ -26,6 +26,9 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/donate', [\App\Http\Controllers\DonationController::class, 'index'])->name('donate.index');
 Route::post('/donate', [\App\Http\Controllers\DonationController::class, 'store'])->name('donate.store');
 
+Route::get('/waqf-projects', [\App\Http\Controllers\DonationProjectController::class, 'index'])->name('donation-projects.index');
+Route::get('/waqf-projects/{donationProject:slug}', [\App\Http\Controllers\DonationProjectController::class, 'show'])->name('donation-projects.show');
+
 /*
 |--------------------------------------------------------------------------
 | مسارات لوحة التحكم (Admin) — بدون صلاحيات متعددة، فقط auth
@@ -47,6 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::delete('contact-messages/{contactMessage}', [\App\Http\Controllers\Admin\ContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
 
     Route::resource('bank-accounts', \App\Http\Controllers\Admin\BankAccountController::class)->except(['show']);
+    Route::resource('donation-projects', \App\Http\Controllers\Admin\DonationProjectController::class)->except(['show']);
 
     Route::get('donations', [\App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
     Route::get('donations/{donation}', [\App\Http\Controllers\Admin\DonationController::class, 'show'])->name('donations.show');

@@ -29,17 +29,32 @@
     </div>
 </div>
 
-{{-- فلترة بالحالة --}}
-<div class="flex flex-wrap gap-2 mb-6">
+{{-- فلترة بالحالة والمشروع --}}
+<div class="flex flex-wrap items-center gap-2 mb-6">
     @php
         $filters = ['' => 'الكل', 'new' => 'جديد', 'confirmed' => 'مؤكد', 'rejected' => 'مرفوض'];
     @endphp
     @foreach($filters as $value => $label)
-        <a href="{{ route('admin.donations.index', $value ? ['status' => $value] : []) }}"
+        <a href="{{ route('admin.donations.index', array_filter(['status' => $value, 'project' => $projectId ?? null])) }}"
            class="px-5 py-2 rounded-xl text-sm font-semibold transition {{ ($status ?? '') === $value || (!$status && $value === '') ? 'bg-primary text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-primary hover:text-primary' }}">
             {{ $label }}
         </a>
     @endforeach
+
+    @if($projects->isNotEmpty())
+        <form method="GET" action="{{ route('admin.donations.index') }}" class="ms-auto">
+            @if($status)
+                <input type="hidden" name="status" value="{{ $status }}">
+            @endif
+            <select name="project" onchange="this.form.submit()"
+                    class="rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 focus:border-primary focus:ring-primary/30 px-4 py-2">
+                <option value="">كل المشاريع</option>
+                @foreach($projects as $project)
+                    <option value="{{ $project->id }}" @selected(($projectId ?? '') == $project->id)>{{ $project->name }}</option>
+                @endforeach
+            </select>
+        </form>
+    @endif
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-x-auto">
@@ -48,6 +63,7 @@
             <tr>
                 <th class="px-6 py-4">المتبرع</th>
                 <th class="px-6 py-4">المبلغ</th>
+                <th class="px-6 py-4">المشروع</th>
                 <th class="px-6 py-4">البنك</th>
                 <th class="px-6 py-4">الحالة</th>
                 <th class="px-6 py-4">التاريخ</th>
@@ -62,6 +78,13 @@
                         <span class="text-gray-400 text-xs" dir="ltr">{{ $donation->phone }}</span>
                     </td>
                     <td class="px-6 py-4 font-extrabold text-primary-dark">{{ number_format($donation->amount, 0) }} <span class="text-xs text-gray-400 font-normal">ريال</span></td>
+                    <td class="px-6 py-4 text-gray-500">
+                        @if($donation->project)
+                            <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-semibold">{{ $donation->project->name }}</span>
+                        @else
+                            <span class="text-gray-400 text-xs">تبرع عام</span>
+                        @endif
+                    </td>
                     <td class="px-6 py-4 text-gray-500">{{ $donation->bankAccount?->bank_name ?? '—' }}</td>
                     <td class="px-6 py-4">
                         @if($donation->status === 'confirmed')
@@ -84,7 +107,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="6" class="px-6 py-10 text-center text-gray-400">لا توجد تبرعات بعد</td></tr>
+                <tr><td colspan="7" class="px-6 py-10 text-center text-gray-400">لا توجد تبرعات بعد</td></tr>
             @endforelse
         </tbody>
     </table>

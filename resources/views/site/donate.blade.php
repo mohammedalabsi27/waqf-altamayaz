@@ -130,6 +130,20 @@
                             @error('amount') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
 
+                        @if($projects->isNotEmpty())
+                            <div>
+                                <label class="block font-semibold text-gray-700 mb-2 text-sm">التبرع لمشروع وقفي <span class="text-gray-400 font-normal">(اختياري)</span></label>
+                                <select name="donation_project_id"
+                                        class="w-full rounded-xl border-gray-300 focus:border-secondary focus:ring-secondary px-4 py-3">
+                                    <option value="">— تبرع عام للوقف —</option>
+                                    @foreach($projects as $project)
+                                        <option value="{{ $project->id }}" @selected(old('donation_project_id', $selectedProjectId) == $project->id)>{{ $project->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('donation_project_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+                            </div>
+                        @endif
+
                         <div>
                             <label class="block font-semibold text-gray-700 mb-2 text-sm">الاسم الكامل</label>
                             <input type="text" name="name" value="{{ old('name') }}" required

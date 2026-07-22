@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Donation;
+use App\Models\DonationProject;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
@@ -12,9 +13,11 @@ class DonationController extends Controller
     public function index(Request $request)
     {
         $status = $request->query('status');
+        $projectId = $request->query('project');
 
-        $donations = Donation::with('bankAccount')
+        $donations = Donation::with(['bankAccount', 'project'])
             ->when(in_array($status, ['new', 'confirmed', 'rejected']), fn ($q) => $q->where('status', $status))
+            ->when($projectId, fn ($q) => $q->where('donation_project_id', $projectId))
             ->latest()
             ->paginate(20)
             ->withQueryString();
@@ -25,7 +28,9 @@ class DonationController extends Controller
             'confirmed_amount' => Donation::confirmed()->sum('amount'),
         ];
 
-        return view('admin.donations.index', compact('donations', 'stats', 'status'));
+        $projects = DonationProject::ordered()->get(['id', 'name']);
+
+        return view('admin.donations.index', compact('donations', 'stats', 'status', 'projects', 'projectId'));
     }
 
     public function show(Donation $donation)

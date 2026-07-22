@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ImpactItemSeeder::class,
             TrainingBagSeeder::class,
             BankAccountSeeder::class,
+            DonationProjectSeeder::class,
         ]);
     }
 }

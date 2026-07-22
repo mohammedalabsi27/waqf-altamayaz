@@ -17,6 +17,7 @@ class Donation extends Model
         'email',
         'amount',
         'bank_account_id',
+        'donation_project_id',
         'transfer_reference',
         'note',
         'status',
@@ -29,6 +30,11 @@ class Donation extends Model
     public function bankAccount(): BelongsTo
     {
         return $this->belongsTo(BankAccount::class);
+    }
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(DonationProject::class, 'donation_project_id');
     }
 
     public function scopeNew($query)
