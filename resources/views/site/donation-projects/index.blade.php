@@ -55,14 +55,26 @@
                                 <span class="block text-xs text-gray-400 mt-1.5">اكتمل {{ $project->progress_percent }}%</span>
                             </div>
 
-                            <div class="flex items-center gap-3 mt-5">
-                                <a href="{{ route('donate.index', ['project' => $project->slug]) }}" class="btn-primary btn-md flex-1 justify-center">
-                                    <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
-                                </a>
-                                <a href="{{ route('donation-projects.show', $project) }}" class="shrink-0 inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-secondary hover:gap-3 transition-all">
-                                    التفاصيل <i class="fa-solid fa-arrow-left"></i>
-                                </a>
-                            </div>
+                            {{-- إدخال المبلغ والتبرع المباشر --}}
+                            <form action="{{ route('checkout.show') }}" method="GET" class="mt-5" x-data="{ amount: '' }">
+                                <input type="hidden" name="project" value="{{ $project->slug }}">
+                                <div class="grid grid-cols-3 gap-2 mb-3">
+                                    @foreach([50, 100, 500] as $preset)
+                                        <button type="button" @click="amount = '{{ $preset }}'"
+                                                class="py-1.5 rounded-lg border text-xs font-bold transition"
+                                                :class="amount === '{{ $preset }}' ? 'bg-primary text-white border-primary' : 'border-gray-200 text-gray-500 hover:border-primary hover:text-primary'">
+                                            {{ $preset }} ريال
+                                        </button>
+                                    @endforeach
+                                </div>
+                                <div class="flex gap-2">
+                                    <input type="number" name="amount" x-model="amount" min="1" step="any" required placeholder="مبلغ التبرع"
+                                           class="w-full min-w-0 rounded-xl border-gray-300 focus:border-secondary focus:ring-secondary px-3 py-2.5 text-sm">
+                                    <button type="submit" class="btn-primary btn-md shrink-0">
+                                        <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 @endforeach

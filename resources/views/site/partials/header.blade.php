@@ -73,7 +73,7 @@
                 <li><a href="{{ route('contact.index') }}" class="nav-link {{ request()->routeIs('contact.*') ? 'is-active' : '' }}">تواصل معنا</a></li>
             </ul>
 
-            <a href="{{ route('donate.index') }}" class="hidden lg:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-2.5 rounded-xl shadow-accent-glow hover:-translate-y-0.5 transition-all">
+            <a href="{{ route('donation-projects.index') }}" class="hidden lg:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-2.5 rounded-xl shadow-accent-glow hover:-translate-y-0.5 transition-all">
                 <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
             </a>
 
@@ -99,7 +99,7 @@
         <a href="{{ route('donation-projects.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">المشاريع الوقفية</a>
         <a href="{{ route('training-bags.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">الحقائب التدريبية</a>
         <a href="{{ route('contact.index') }}" class="block py-2.5 px-3 rounded-lg hover:bg-primary/5 hover:text-secondary transition">تواصل معنا</a>
-        <a href="{{ route('donate.index') }}" class="flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-3 rounded-xl w-full mt-2 transition">
+        <a href="{{ route('donation-projects.index') }}" class="flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-primary-dark font-extrabold px-6 py-3 rounded-xl w-full mt-2 transition">
             <i class="fa-solid fa-hand-holding-heart"></i> تبرع الآن
         </a>
     </div>

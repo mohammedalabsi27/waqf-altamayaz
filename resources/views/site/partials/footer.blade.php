@@ -35,7 +35,6 @@
                 <li><a href="{{ route('programs.index') }}" class="inline-flex items-center gap-2 hover:text-accent hover:gap-3 transition-all"><i class="fa-solid fa-angle-left text-xs text-accent"></i> البرامج</a></li>
                 <li><a href="{{ route('training-bags.index') }}" class="inline-flex items-center gap-2 hover:text-accent hover:gap-3 transition-all"><i class="fa-solid fa-angle-left text-xs text-accent"></i> الحقائب التدريبية</a></li>
                 <li><a href="{{ route('donation-projects.index') }}" class="inline-flex items-center gap-2 hover:text-accent hover:gap-3 transition-all"><i class="fa-solid fa-angle-left text-xs text-accent"></i> المشاريع الوقفية</a></li>
-                <li><a href="{{ route('donate.index') }}" class="inline-flex items-center gap-2 hover:text-accent hover:gap-3 transition-all"><i class="fa-solid fa-angle-left text-xs text-accent"></i> تبرع الآن</a></li>
                 <li><a href="{{ route('contact.index') }}" class="inline-flex items-center gap-2 hover:text-accent hover:gap-3 transition-all"><i class="fa-solid fa-angle-left text-xs text-accent"></i> تواصل معنا</a></li>
             </ul>
         </div>

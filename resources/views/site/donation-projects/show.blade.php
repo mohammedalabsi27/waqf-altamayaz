@@ -56,9 +56,24 @@
                     </div>
                 </div>
 
-                <a href="{{ route('donate.index', ['project' => $donationProject->slug]) }}" class="btn-primary btn-lg w-full justify-center">
-                    <i class="fa-solid fa-hand-holding-heart"></i> تبرع لهذا المشروع
-                </a>
+                {{-- إدخال المبلغ والتبرع المباشر --}}
+                <form action="{{ route('checkout.show') }}" method="GET" x-data="{ amount: '' }">
+                    <input type="hidden" name="project" value="{{ $donationProject->slug }}">
+                    <div class="grid grid-cols-4 gap-2 mb-3">
+                        @foreach([50, 100, 500, 1000] as $preset)
+                            <button type="button" @click="amount = '{{ $preset }}'"
+                                    class="py-1.5 rounded-lg border text-xs font-bold transition"
+                                    :class="amount === '{{ $preset }}' ? 'bg-primary text-white border-primary' : 'border-gray-200 text-gray-500 hover:border-primary hover:text-primary'">
+                                {{ $preset }}
+                            </button>
+                        @endforeach
+                    </div>
+                    <input type="number" name="amount" x-model="amount" min="1" step="any" required placeholder="أدخل مبلغ التبرع (ريال)"
+                           class="w-full rounded-xl border-gray-300 focus:border-secondary focus:ring-secondary px-4 py-3 mb-3">
+                    <button type="submit" class="btn-primary btn-lg w-full justify-center">
+                        <i class="fa-solid fa-hand-holding-heart"></i> تبرع لهذا المشروع
+                    </button>
+                </form>
                 <a href="{{ route('donation-projects.index') }}" class="mt-4 inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-secondary hover:gap-3 transition-all">
                     <i class="fa-solid fa-arrow-right"></i> جميع المشاريع الوقفية
                 </a>

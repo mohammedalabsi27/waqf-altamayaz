@@ -23,11 +23,15 @@ Route::get('/training-bags/{trainingBag:slug}', [TrainingBagController::class, '
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-Route::get('/donate', [\App\Http\Controllers\DonationController::class, 'index'])->name('donate.index');
-Route::post('/donate', [\App\Http\Controllers\DonationController::class, 'store'])->name('donate.store');
+// الرابط القديم لصفحة التبرع صار يوجّه لصفحة المشاريع الوقفية
+Route::redirect('/donate', '/waqf-projects');
 
 Route::get('/waqf-projects', [\App\Http\Controllers\DonationProjectController::class, 'index'])->name('donation-projects.index');
 Route::get('/waqf-projects/{donationProject:slug}', [\App\Http\Controllers\DonationProjectController::class, 'show'])->name('donation-projects.show');
+
+Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'show'])->name('checkout.show');
+Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout/success', [\App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
 
 /*
 |--------------------------------------------------------------------------
